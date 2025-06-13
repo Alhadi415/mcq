@@ -27,7 +27,7 @@ def upload_pdf():
         texts_dir = os.path.join(temp_dir, "texts")
         os.makedirs(texts_dir, exist_ok=True)
         MoamalOCR(
-    service_account_json="credentials.json",  
+     service_account_json="/etc/secrets/credentials.json",  
     images_folder=images_dir,
     output_folder=texts_dir
 )

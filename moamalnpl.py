@@ -86,7 +86,7 @@ Text:
 
         except Exception as e:
             print(f"❌ خطأ في الدفعة {idx + 1}: {e}")
-            print("📛 الرد الذي سبب الخطأ:\n", result_text)
+            
             continue
 
         if not results:

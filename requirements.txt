@@ -9,3 +9,4 @@ python-dotenv
 Flask
 pdf2image
 gunicorn
+flask-cors 

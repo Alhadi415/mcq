@@ -91,6 +91,8 @@ Text:
 
         if not results:
          print("⚠️ لم يتم استخراج أي أسئلة.")
+         import sys; sys.stdout.flush()
+
          return []
 
     # لو كان فيه مسار حفظ، نحفظه (اختياري)

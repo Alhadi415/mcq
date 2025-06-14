@@ -52,6 +52,9 @@ def MoamalOCR(service_account_json, images_folder, output_folder="outputtext", b
                 f.write(f"--- Page {page_number} ---\n")
 
 
+            
             print(f"✅ {image_file} ➝ {output_path}")
+            print(f"📄 محتوى {output_path}:\n{extracted_text[:300]}")
+
 
     print("🎉  OCR DONE .")

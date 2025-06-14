@@ -4,8 +4,9 @@ import tempfile
 from moamolpdf import moamolpdf
 from moamalocr import MoamalOCR
 from moamalnpl import process_txt_files
-
+from flask-cors import CORS
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/upload", methods=["POST"])
 def upload_pdf():

@@ -34,6 +34,7 @@ def process_txt_files(input_folder, output_json_path = None):
 
     for idx, batch_text in enumerate(batches):
         print(f"\n📦 معالجة الدفعة {idx + 1} من {len(batches)}")
+        print("📤 النصوص قبل الإرسال:\n", batch_text[:500])
 
         prompt = f"""
 You are an intelligent MCQ extractor.
@@ -93,7 +94,6 @@ Text:
          print("⚠️ لم يتم استخراج أي أسئلة.")
          import sys; sys.stdout.flush()
          
-          print("📤 النصوص قبل الإرسال:\n", batch_text[:500])
 
  
          return []

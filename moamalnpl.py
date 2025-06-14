@@ -99,6 +99,9 @@ Text:
         with open(output_json_path, "w", encoding="utf-8") as out_f:
             json.dump(results, out_f, ensure_ascii=False, indent=2)
         print(f"✅ JSON IS DONE: {output_json_path}")
+        print("📂 تم استخراج هذه النتائج:")
+        print(json.dumps(results, indent=2, ensure_ascii=False))
+
 
     return results 
 

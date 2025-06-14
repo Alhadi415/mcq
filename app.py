@@ -4,7 +4,7 @@ import tempfile
 from moamolpdf import moamolpdf
 from moamalocr import MoamalOCR
 from moamalnpl import process_txt_files
-from flask-cors import CORS
+from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 

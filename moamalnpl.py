@@ -4,9 +4,9 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-        api_key="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",
- # 🔒 غيّره هنا لو نشرته علنًا
+    api_key=os.getenv("OPENROUTER_API_KEY"),
 )
+
 
 BATCH_SIZE = 5
 

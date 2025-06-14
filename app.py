@@ -11,6 +11,7 @@ app = Flask(__name__)
 def upload_pdf():
     if "pdf" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
+    print("📥 تم استلام ملف PDF:", pdf_file.filename)
 
     pdf_file = request.files["pdf"]
     if pdf_file.filename == "":

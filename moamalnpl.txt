@@ -11,6 +11,8 @@ client = OpenAI(
 BATCH_SIZE = 5  # عدد الصفحات لكل دفعة
 
 def process_txt_files(input_folder, output_json_path):
+     print("🚀 بدأ تحليل النصوص في المسار:", input_folder)
+
     batches = []
     current_batch = ""
     count = 0

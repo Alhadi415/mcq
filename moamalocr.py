@@ -46,6 +46,8 @@ def MoamalOCR(service_account_json, images_folder, output_folder="outputtext", b
             output_path = os.path.join(output_folder,f"{page_number}.text")
                                        
             extracted_text = annotation.text_annotations[0].description if annotation.text_annotations else "No text detected"
+            
+            print(f"📄 محتوى نص {page_number}:\n{extracted_text[:300]}")
 
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(extracted_text)

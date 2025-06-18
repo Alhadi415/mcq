@@ -16,13 +16,13 @@ def MoamalOCR(service_account_json, images_folder, output_folder="outputtext", b
     image_files = [f for f in os.listdir(images_folder) if f.lower().endswith((".png", ".jpg", ".jpeg"))]
 
     if not image_files:
-        print("❌ لم يتم العثور على أي صور.")
+        print("❌      No images found.")
         return
 
     batches = [image_files[i:i + batch_size] for i in range(0, len(image_files), batch_size)]
 
     for batch_index, batch in enumerate(batches):
-        print(f"📦 دفعة {batch_index + 1}/{len(batches)}")
+        print(f"📦 batch {batch_index + 1}/{len(batches)}")
 
         requests = []
         for image_file in batch:
@@ -37,7 +37,7 @@ def MoamalOCR(service_account_json, images_folder, output_folder="outputtext", b
         try:
             response = client.batch_annotate_images(requests=requests)
         except Exception as e:
-            print(f"❌ خطأ في الاتصال بـ Vision API: {e}")
+            print(f"❌  Communication error   Vision API: {e}")
             continue
 
         for image_file, annotation in zip(batch, response.responses):
@@ -47,7 +47,7 @@ def MoamalOCR(service_account_json, images_folder, output_folder="outputtext", b
                                        
             extracted_text = annotation.text_annotations[0].description if annotation.text_annotations else "No text detected"
             
-            print(f"📄 محتوى نص {page_number}:\n{extracted_text[:300]}")
+            print(f"📄  Text content {page_number}:\n{extracted_text[:300]}")
 
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(extracted_text)
@@ -56,7 +56,7 @@ def MoamalOCR(service_account_json, images_folder, output_folder="outputtext", b
 
             
             print(f"✅ {image_file} ➝ {output_path}")
-            print(f"📄 محتوى {output_path}:\n{extracted_text[:300]}")
+            print(f"📄 Text content {output_path}:\n{extracted_text[:300]}")
 
 
     print("🎉  OCR DONE .")

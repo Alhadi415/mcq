@@ -33,8 +33,8 @@ def process_txt_files(input_folder, output_json_path = None):
     results = []
 
     for idx, batch_text in enumerate(batches):
-        print(f"\n📦 معالجة الدفعة {idx + 1} من {len(batches)}")
-        print("📤 النصوص قبل الإرسال:\n", batch_text[:500])
+        print(f"\n📦  Batch processing {idx + 1} من {len(batches)}")
+        print("📤   Texts before sending:\n", batch_text[:500])
 
         prompt = f"""
 You are an intelligent MCQ extractor.
@@ -64,13 +64,12 @@ Text:
             )
 
             if not response.choices or not response.choices[0].message:
-                print("❌ لا يوجد رد من LLM.")
+                print("❌ No response LLM.")
                 continue
 
             result_text = response.choices[0].message.content.strip()
-            print("🧠 الرد الأولي من LLM:\n", result_text)
+            print("🧠  response  LLM:\n", result_text)
 
-            # إزالة الغلاف إن وجد
             if result_text.startswith("```json"):
                 result_text = result_text[len("```json"):].strip()
             if result_text.startswith("```"):
@@ -86,25 +85,24 @@ Text:
             results.extend(cleaned)
 
         except Exception as e:
-            print(f"❌ خطأ في الدفعة {idx + 1}: {e}")
+            print(f"❌  Error Batch  {idx + 1}: {e}")
             
             continue
 
         if not results:
-         print("⚠️ لم يتم استخراج أي أسئلة.")
+         print("⚠️   No questions were extracted.  .")
          import sys; sys.stdout.flush()
          
 
  
          return []
 
-    # لو كان فيه مسار حفظ، نحفظه (اختياري)
     if output_json_path:
         os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
         with open(output_json_path, "w", encoding="utf-8") as out_f:
             json.dump(results, out_f, ensure_ascii=False, indent=2)
         print(f"✅ JSON IS DONE: {output_json_path}")
-        print("📂 تم استخراج هذه النتائج:")
+        print("📂    The results have been extracted:")
         print(json.dumps(results, indent=2, ensure_ascii=False))
 
 

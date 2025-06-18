@@ -34,9 +34,8 @@ def upload_pdf():
 )
 
 
-        results = process_txt_files(texts_dir)  # لا نرسل output_json_path
-
-        return jsonify(results)  # 🎯 مباشرة JSON بدون تخزين
+        results = process_txt_files(texts_dir)  
+        return jsonify(results) 
 
 if __name__ == "__main__":
     app.run(debug=True)
